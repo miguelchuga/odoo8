@@ -32,7 +32,7 @@
     'website': 'http://mcsistemas.net',
     'category': 'Accounting & Finance',
     'depends': [],
-    'data': [
+    'data': ['res_currency_mc.xml'
     ],
     'installable': True,
     'application': True,

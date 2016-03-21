@@ -20,5 +20,5 @@ class res_currency(osv.Model):
                   help='The rate of the currency to the currency of rate 1 (0 if no rate defined).'),
              }
 
-res_currency_rate()
+res_currency()
 
