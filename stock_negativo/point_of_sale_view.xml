@@ -10,7 +10,7 @@
                 <data>
                 	<xpath expr="//group/field[@name='sale_journal']" position="replace"/>
                         <xpath expr="//group/field[@name='partner_id']" position="after">
-                            <field name="sale_journal"/>
+                            <field name="sale_journal" string="Serie de Factura "/>
                         </xpath>
 
   		            <field name="session_id" position="attributes">
