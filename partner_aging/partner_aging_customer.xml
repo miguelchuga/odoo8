@@ -16,7 +16,7 @@
       </field>
     </record>   
    
-      <!-- Customer Aging Custom Fields on Journal Items Tree View-->
+      <!-- Customer Aging Custom Fields on Journal Items Tree View
     <record model="ir.ui.view" id="view_customer_aging_ji_tree">
       <field name="name">customer.aging.ji.tree</field>
       <field name="model">account.move.line</field>
@@ -29,7 +29,7 @@
           </field>          
       </field>
     </record>
-    
+    -->
     <!-- Customer Aging search/filters -->
     <record model="ir.ui.view" id="view_customer_aging_search">
       <field name="name">customer.aging.search</field>
