@@ -19,57 +19,57 @@ def float_a_integer(num):
 
 def num_a_letras(num, completo=True):
     en_letras = {
-        '0': 'cero',
-        '1': 'uno',
-        '2': 'dos',
-        '3': 'tres',
-        '4': 'cuatro',
-        '5': 'cinco',
-        '6': 'seis',
-        '7': 'siete',
-        '8': 'ocho',
-        '9': 'nueve',
-        '10': 'diez',
-        '11': 'once',
-        '12': 'doce',
-        '13': 'trece',
-        '14': 'catorce',
-        '15': 'quince',
-        '16': 'dieciseis',
-        '17': 'diecisiete',
-        '18': 'dieciocho',
-        '19': 'diecinueve',
-        '20': 'veinte',
-        '21': 'veintiuno',
-        '22': 'veintidos',
-        '23': 'veintitres',
-        '24': 'veinticuatro',
-        '25': 'veinticinco',
-        '26': 'veintiseis',
-        '27': 'veintisiete',
-        '28': 'veintiocho',
-        '29': 'veintinueve',
-        '3x': 'treinta',
-        '4x': 'cuarenta',
-        '5x': 'cincuenta',
-        '6x': 'sesenta',
-        '7x': 'setenta',
-        '8x': 'ochenta',
-        '9x': 'noventa',
-        '100': 'cien',
-        '1xx': 'ciento',
-        '2xx': 'doscientos',
-        '3xx': 'trescientos',
-        '4xx': 'cuatrocientos',
-        '5xx': 'quinientos',
-        '6xx': 'seiscientos',
-        '7xx': 'setecientos',
-        '8xx': 'ochocientos',
-        '9xx': 'novecientos',
-        '1xxx': 'mil',
-        'xxxxxx': 'mil',
-        '1xxxxxx': 'un millon',
-        'x:x': 'millones'
+        '0': 'CERO',
+        '1': 'UNO',
+        '2': 'DOS',
+        '3': 'TRES',
+        '4': 'CUATRO',
+        '5': 'CINCO',
+        '6': 'SEIS',
+        '7': 'SIETE',
+        '8': 'OCO',
+        '9': 'NUEVE',
+        '10': 'DIEZ',
+        '11': 'ONCE',
+        '12': 'DOCE',
+        '13': 'TRECE',
+        '14': 'CATORCE',
+        '15': 'QUINCE',
+        '16': 'DIECISEIS',
+        '17': 'DIECISIETE',
+        '18': 'DIECIOCHO',
+        '19': 'DIECINUEVE',
+        '20': 'VEINTE',
+        '21': 'VEINTIUNO',
+        '22': 'VEINTIDOS',
+        '23': 'VEINTITRES',
+        '24': 'VEINTICUATRO',
+        '25': 'VEINTICINCO',
+        '26': 'VEINTISEIS',
+        '27': 'VEINTISIETE',
+        '28': 'VEINTIOCHO',
+        '29': 'VEINTINUEVE',
+        '3x': 'TREINTA',
+        '4x': 'CUARENTA',
+        '5x': 'CINCUENTA',
+        '6x': 'SESENTA',
+        '7x': 'SETENTA',
+        '8x': 'OCHENTA',
+        '9x': 'NOVENTA',
+        '100': 'CIEN',
+        '1xx': 'CIENTO',
+        '2xx': 'DOSCIENTOS',
+        '3xx': 'TRESCIENTOS',
+        '4xx': 'CUATROCIENTOS',
+        '5xx': 'QUINIENTOS',
+        '6xx': 'SEISCIENTOS',
+        '7xx': 'SETECIENTOS',
+        '8xx': 'OCHOCIENTOS',
+        '9xx': 'NOVECIENTOS',
+        '1xxx': 'MIL',
+        'xxxxxx': 'MIL',
+        '1xxxxxx': 'UN MILLON',
+        'x:x': 'MILLONES'
     }
 
     num_limpio = str(num).replace(',','')
@@ -89,7 +89,7 @@ def num_a_letras(num, completo=True):
     elif int(entero) < 100:
         num_en_letras = en_letras[entero[0] + 'x']
         if entero[1] != '0':
-            num_en_letras = num_en_letras + ' y ' + en_letras[entero[1]]
+            num_en_letras = num_en_letras + ' Y ' + en_letras[entero[1]]
     elif int(entero) < 101:
         num_en_letras = en_letras[entero]
     elif int(entero) < 1000:
@@ -121,9 +121,9 @@ def num_a_letras(num, completo=True):
         return num_en_letras
 
     if decimal == 0:
-        letras = '%s exactos' % num_en_letras
+        letras = '%s EXACTOS' % num_en_letras
     else:
-        letras = '%s con %s/100' % (num_en_letras, decimal)
+        letras = '%s CON %s/100' % (num_en_letras, decimal)
 
     return letras
 

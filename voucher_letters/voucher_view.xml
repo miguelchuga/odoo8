@@ -8,7 +8,12 @@
 			<field name="arch" type="xml">
         	<field name="amount" position="after">
           		<field name="valor_letras"/>
+          		<field name="hecho_por"/>
+          		<field name="revisado_por"/>
+          		<field name="autorizado_por"/>
+                <field name="no_negociable"/>
         	</field></field>
+
 		</record>
     </data>
 </openerp>
