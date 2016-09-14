@@ -27,7 +27,7 @@ def num_a_letras(num, completo=True):
         '5': 'CINCO',
         '6': 'SEIS',
         '7': 'SIETE',
-        '8': 'OCO',
+        '8': 'OCHO',
         '9': 'NUEVE',
         '10': 'DIEZ',
         '11': 'ONCE',
