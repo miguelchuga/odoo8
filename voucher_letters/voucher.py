@@ -16,3 +16,6 @@ class account_voucher(models.Model):
     revisado_por=fields.Char('Revisado por ',size=10)
     autorizado_por=fields.Char('Autorizado por ',size=10)
     no_negociable=fields.Char('NO Negociable ',size=15,default='NO NEGOCIABLE')
+    concepto_a=fields.Char('Concepto A ',size=85,default=' ')
+    concepto_b=fields.Char('Concepto B ',size=85,default=' ')
+    concepto_c=fields.Char('Concepto C ',size=85,default=' ')
