@@ -31,11 +31,13 @@
     </record>
     -->
     <!-- Customer Aging search/filters -->
+
     <record model="ir.ui.view" id="view_customer_aging_search">
       <field name="name">customer.aging.search</field>
       <field name="model">partner.aging.customer</field>
       <field name="type">search</field>
       <field name="arch" type="xml">
+
 	<search string="Customer Aging">
 	  <filter string="Overdue" name="overdue" help="Overdue" domain="['|','|','|','|',
 									 ('days_due_01to30','&gt;',0),
@@ -52,15 +54,16 @@
 	  <field name="invoice_id" />
 	  <field name="invoice_ref"/>
 	  <field name="total" sum="Total"/>
-	  <group expand="0" string="Group By...">
+
+<!--	  <group expand="0" string="Group By...">
 	    <filter string="Partner" domain="[]" context="{'group_by':'partner_id'}"/>
 	    <filter string="Comercial" domain="[]" context="{'group_by':'comercial_id'}"/>
-	  </group>
-	  
+	  </group>	  -->
+
 	</search>
       </field>
     </record>
-    
+
     <!-- Customer Aging tree -->
     <record model="ir.ui.view" id="view_customer_aging_tree">
       <field name="name">customer.aging.tree</field>

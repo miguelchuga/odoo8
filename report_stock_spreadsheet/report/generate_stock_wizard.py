@@ -127,6 +127,8 @@ class GenerateStockWizard(models.Model):
             ws = wb.create_sheet()
             ws['A1'].value = str(location_id.display_name) 
 #            ws.title = "Stock_Total"+"_"+str(location_id.id)
+            ws.title = location_id.display_name.replace(':', '_')
+
             ws.title = location_id.display_name.replace('/', '_')
             ws['A2'].value = "id"
             ws['B2'].value = "default_code"
