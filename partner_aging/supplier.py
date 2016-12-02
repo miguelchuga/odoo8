@@ -142,7 +142,7 @@ class partner_aging_supplier(osv.osv):
                     days_due as "avg_days_overdue", 
                     l.date as "date",
                     CASE WHEN ai.type = 'in_refund' AND ai.id is not null THEN -1*ai.residual--*ABS((l.debit - l.credit)/ai.amount_untaxed) 
-                    ELSE ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed)
+                    ELSE ai.residual--*ABS((l.debit - l.credit)/ai.amount_untaxed)
                          END as "total",
                     CASE WHEN (days_due BETWEEN 31 AND  60) and ai.id is not null THEN
                              CASE WHEN ai.type = 'in_refund' THEN -1*ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed) ELSE ai.residual--*ABS((l.debit - l.credit)/ai.amount_untaxed) 
