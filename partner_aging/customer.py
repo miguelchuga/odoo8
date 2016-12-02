@@ -107,23 +107,23 @@ class account_aging_customer(osv.osv):
         """
 
         query = """ 
-                Select sq2.id,sq2.partner_id,sq2.partner_name,
+Select sq2.id,sq2.partner_id,sq2.partner_name,rpc.ref,rpc.street direccion,
         ruc.id AS comercial_id ,ruc.name AS comercial_name,
         sq2.salesman,sq2.avg_days_overdue,sq2.date,sq2.date_due,sq2.total,sq2.unapp_cash,
-	sq2.days_due_01to30,
-	sq2.days_due_31to60,
-	sq2.days_due_61to90,
-	sq2.days_due_91to120,
-	sq2.days_due_121togr,
-	sq2.max_days_overdue,
-	sq2.not_due,
-	sq2.current,
-	sq2.invoice_ref,
-	sq2.invoice_id,
-	sq2.comment,
-	sq2.unapp_credits
+    sq2.days_due_01to30,
+    sq2.days_due_31to60,
+    sq2.days_due_61to90,
+    sq2.days_due_91to120,
+    sq2.days_due_121togr,
+    sq2.max_days_overdue,
+    sq2.not_due,
+    sq2.current,
+    sq2.invoice_ref,
+    sq2.invoice_id,
+    sq2.comment,
+    sq2.unapp_credits
 
-	from (
+    from (
 select aml.id, 
 partner_id, 
 NULL AS partner_name,
@@ -181,14 +181,18 @@ days_due AS avg_days_overdue, NULL as date, date as date_due,
                     AND account_id in (select id from account_account where type = 'receivable')
 
 
-                UNION       
-                select id, partner_id, partner_name ,salesman, avg_days_overdue, oldest_invoice_date as date, date_due, total, unapp_cash, days_due_01to30, days_due_31to60, days_due_61to90, days_due_91to120, days_due_121togr, max_days_overdue, not_due, current, invoice_ref, invoice_id, comment, unapp_credits from account_voucher_customer_unapplied 
+                UNION
+                select id, partner_id, partner_name ,salesman, avg_days_overdue, oldest_invoice_date as date, date_due, total, unapp_cash, 
+                days_due_01to30, days_due_31to60, days_due_61to90, 
+                days_due_91to120, days_due_121togr, max_days_overdue, 
+                not_due, current, invoice_ref, invoice_id, comment, unapp_credits 
+                From account_voucher_customer_unapplied 
 
 
                 UNION 
 
             
-                SELECT id, partner_id, partner_name,salesman, avg_days_overdue, date, date_due, total, unapp_cash,
+                SELECT id, partner_id, partner_name, salesman, avg_days_overdue, date, date_due, total, unapp_cash,
                        days_due_01to30, days_due_31to60, days_due_61to90, days_due_91to120, days_due_121togr, max_days_overdue, not_due, current, invoice_ref, invoice_id, comment, unapp_credits 
                        from (
 
@@ -269,8 +273,8 @@ days_due AS avg_days_overdue, NULL as date, date as date_due,
                   AND ai.state <> 'paid'
                --------++--------   
                 ) sq ) sq2
-	            LEFT JOIN res_partner rpc ON sq2.partner_id = rpc.id
-	            LEFT JOIN (Select r.id AS user_id, p.id, p.name from res_users r JOIN res_partner p ON r.partner_id = p.id) ruc ON rpc.user_id = ruc.user_id
+                LEFT JOIN res_partner rpc ON sq2.partner_id = rpc.id
+                LEFT JOIN (Select r.id AS user_id, p.id, p.name from res_users r JOIN res_partner p ON r.partner_id = p.id) ruc ON rpc.user_id = ruc.user_id
               """
 
         tools.drop_view_if_exists(cr, '%s' % (self._name.replace('.', '_')))

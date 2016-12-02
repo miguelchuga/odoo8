@@ -141,38 +141,46 @@ class partner_aging_supplier(osv.osv):
                     CASE WHEN ai.id is not null THEN ai.date_due ElSE l.date END as "date_due",
                     days_due as "avg_days_overdue", 
                     l.date as "date",
-                    CASE WHEN ai.type = 'in_refund' AND ai.id is not null THEN -1*ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed) ELSE ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed)
+                    CASE WHEN ai.type = 'in_refund' AND ai.id is not null THEN -1*ai.residual--*ABS((l.debit - l.credit)/ai.amount_untaxed) 
+                    ELSE ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed)
                          END as "total",
                     CASE WHEN (days_due BETWEEN 31 AND  60) and ai.id is not null THEN
-                             CASE WHEN ai.type = 'in_refund' THEN -1*ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed) ELSE ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed) END 
+                             CASE WHEN ai.type = 'in_refund' THEN -1*ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed) ELSE ai.residual--*ABS((l.debit - l.credit)/ai.amount_untaxed) 
+                             END 
                          WHEN (days_due BETWEEN 31 and 60) and ai.id is null THEN l.credit - l.debit 
                          ELSE 0 END  AS "days_due_31to60",
                     CASE WHEN (days_due BETWEEN 61 AND  90) and ai.id is not null THEN 
-                             CASE WHEN ai.type = 'in_refund' THEN -1*ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed) ELSE ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed) END 
+                             CASE WHEN ai.type = 'in_refund' THEN -1*ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed) ELSE ai.residual--*ABS((l.debit - l.credit)/ai.amount_untaxed) 
+                             END 
                          WHEN (days_due BETWEEN 61 and 90) and ai.id is null THEN l.credit - l.debit 
                          ELSE 0 END  AS "days_due_61to90",
                     CASE WHEN (days_due BETWEEN 91 AND 120) and ai.id is not null THEN 
-                             CASE WHEN ai.type = 'in_refund' THEN -1*ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed) ELSE ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed) END 
+                             CASE WHEN ai.type = 'in_refund' THEN -1*ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed) ELSE ai.residual--*ABS((l.debit - l.credit)/ai.amount_untaxed) 
+                             END 
                          WHEN (days_due BETWEEN 91 and 120) and ai.id is null THEN l.credit - l.debit 
                          ELSE 0 END  AS "days_due_91to120",
                     CASE WHEN days_due >=121 and ai.id is not null THEN 
-                             CASE WHEN ai.type = 'in_refund' THEN -1*ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed) ELSE ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed) END 
+                             CASE WHEN ai.type = 'in_refund' THEN -1*ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed) ELSE ai.residual--*ABS((l.debit - l.credit)/ai.amount_untaxed) 
+                             END 
                          WHEN days_due >=121 and ai.id is null THEN l.debit-l.credit 
                          ELSE 0 END AS "days_due_121togr",
                          
                     CASE WHEN (days_due < 1) and ai.id is not null THEN 
-                             CASE WHEN ai.type = 'in_refund' then -1*ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed) ELSE ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed) END 
+                             CASE WHEN ai.type = 'in_refund' then -1*ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed) ELSE ai.residual--*ABS((l.debit - l.credit)/ai.amount_untaxed)
+                              END 
                          WHEN (days_due < 1) and ai.id is null THEN l.credit - l.debit 
                          ELSE 0 END  AS "not_due",
                     0 AS "current",                                
                     CASE WHEN (days_due BETWEEN 1 and 30) and ai.id is not null THEN 
-                             CASE WHEN ai.type = 'in_refund' then -1*ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed) ELSE ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed) END 
+                             CASE WHEN ai.type = 'in_refund' then -1*ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed) ELSE ai.residual--*ABS((l.debit - l.credit)/ai.amount_untaxed) 
+                             END 
                          WHEN (days_due BETWEEN 1 and 30) and ai.id is null THEN l.credit - l.debit 
                          ELSE 0 END  AS "days_due_01to30",
                          
                     CASE when days_due < 0 THEN 0 ELSE days_due END as "max_days_overdue",
                     0 AS "unapp_cash",
-                    CASE WHEN ai.type = 'in_refund' THEN -1*ai.residual*ABS((l.debit - l.credit)/ai.amount_untaxed) END AS "unapp_credits",
+                    CASE WHEN ai.type = 'in_refund' THEN -1*ai.residual--*ABS((l.debit - l.credit)/ai.amount_untaxed) 
+                    END AS "unapp_credits",
                     ai.supplier_invoice_number as "invoice_ref",
                     ai.id as "invoice_id", ai.comment
                    
@@ -203,6 +211,7 @@ class partner_aging_supplier(osv.osv):
                   AND l.reconcile_id IS NULL
                   AND ai.state <> 'paid'
                 ) sq
+
               """
             
         tools.drop_view_if_exists(cr, '%s'%(self._name.replace('.', '_')))
