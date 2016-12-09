@@ -82,7 +82,7 @@ class partner_aging_supplier(osv.osv):
         """
 
         query = """
-                select aml.id, partner_id, NULL AS partner_name, days_due AS avg_days_overdue, NULL as date, date as date_due,                 
+            select aml.id,aml.account_id, partner_id, NULL AS partner_name, days_due AS avg_days_overdue, NULL as date, date as date_due,                 
                 
                 CASE WHEN reconcile_partial_id is not NULL THEN credit-
                     (select sum(l.debit) from account_move_line l where l.reconcile_partial_id = aml.reconcile_partial_id) ELSE (credit-debit) END AS TOTAL, 0 AS unapp_cash,
@@ -131,13 +131,16 @@ class partner_aging_supplier(osv.osv):
                     AND reconcile_id is NULL 
                     AND account_id in (select id from account_account where type = 'payable' and reconcile is True )
                     UNION 
-                select id, partner_id, partner_name, avg_days_overdue, oldest_invoice_date as date, date_due, total, unapp_cash,
+                select id, account_id,partner_id, partner_name, avg_days_overdue, oldest_invoice_date as date, date_due, total, unapp_cash,
                        days_due_31to60, days_due_61to90, days_due_91to120, days_due_121togr, not_due, current, days_due_01to30, max_days_overdue, invoice_ref, invoice_id, comment, unapp_credits
-                       from account_voucher_supplier_unapplied UNION                    
-                select id, partner_id, partner_name, avg_days_overdue, NULL as date, date_due, total, unapp_cash,
+                       from  account_voucher_supplier_unapplied 
+
+                       UNION                    
+                select id, account_id,partner_id, partner_name, avg_days_overdue, NULL as date, date_due, total, unapp_cash,
                        days_due_31to60, days_due_61to90, days_due_91to120, days_due_121togr, not_due, current, days_due_01to30, max_days_overdue, invoice_ref, invoice_id, comment, unapp_credits
                        from (            
-                SELECT l.id as id, l.partner_id as partner_id, res_partner.name as "partner_name",
+
+                SELECT l.id as id, l.account_id,l.partner_id as partner_id, res_partner.name as "partner_name",
                     CASE WHEN ai.id is not null THEN ai.date_due ElSE l.date END as "date_due",
                     days_due as "avg_days_overdue", 
                     l.date as "date",
@@ -211,6 +214,8 @@ class partner_aging_supplier(osv.osv):
                   AND l.reconcile_id IS NULL
                   AND ai.state <> 'paid'
                 ) sq
+
+
 
               """
             

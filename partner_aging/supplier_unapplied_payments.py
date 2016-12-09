@@ -72,6 +72,7 @@ class supplier_unapplied(osv.osv):
                            (select (sum(credit) - sum(debit)) from account_move_line where move_id = av.move_id and reconcile_id is NULL
                            and account_id in (select id from account_account where type = 'payable')) END  AS "days_due_01to30",    
                            av.number as invoice_ref, -999 as "invoice_id", null as comment, 0 as salesman
+                           ,aml.account_id
                FROM account_voucher av,res_partner rp, account_move_line aml
                INNER JOIN
                   ( SELECT id, current_date - aml2.date AS days_due  FROM account_move_line aml2 ) DaysDue
