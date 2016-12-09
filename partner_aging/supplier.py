@@ -129,7 +129,7 @@ class partner_aging_supplier(osv.osv):
                 where 
                     open_ap = 't'
                     AND reconcile_id is NULL 
-                    AND account_id in (select id from account_account where type = 'payable')
+                    AND account_id in (select id from account_account where type = 'payable' and reconcile is True )
                     UNION 
                 select id, partner_id, partner_name, avg_days_overdue, oldest_invoice_date as date, date_due, total, unapp_cash,
                        days_due_31to60, days_due_61to90, days_due_91to120, days_due_121togr, not_due, current, days_due_01to30, max_days_overdue, invoice_ref, invoice_id, comment, unapp_credits
@@ -206,7 +206,7 @@ class partner_aging_supplier(osv.osv):
                 INNER JOIN res_partner
                    ON res_partner.id = l.partner_id
                 WHERE account_account.active
-                  AND (account_account.type IN ('payable'))     
+                  AND (account_account.type IN ('payable')) and reconcile is True     
                   AND account_move.state = 'posted'
                   AND l.reconcile_id IS NULL
                   AND ai.state <> 'paid'

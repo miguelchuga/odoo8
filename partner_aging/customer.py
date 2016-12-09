@@ -178,7 +178,7 @@ days_due AS avg_days_overdue, NULL as date, date as date_due,
                 where
                     open_ar = 't'                
                     AND reconcile_id is NULL 
-                    AND account_id in (select id from account_account where type = 'receivable')
+                    AND account_id in (select id from account_account where type = 'receivable' and reconcile is True )
 
 
                 UNION
@@ -267,7 +267,7 @@ days_due AS avg_days_overdue, NULL as date, date as date_due,
  
  
                 WHERE account_account.active
-                  AND (account_account.type IN ('receivable'))     
+                  AND (account_account.type IN ('receivable'))  and reconcile is True   
                   AND account_move.state = 'posted'
                   AND l.reconcile_id IS NULL
                   AND ai.state <> 'paid'

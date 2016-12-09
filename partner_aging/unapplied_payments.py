@@ -93,7 +93,7 @@ class customer_unapplied(osv.osv):
                     and av.state = 'posted'
                     and aml.reconcile_id is null 
                     and aml.reconcile_partial_id is null
-                    and aml.account_id in (select id from account_account where type = 'receivable')
+                    and aml.account_id in (select id from account_account where type = 'receivable' and reconcile is True)
                     and aml.credit > 0
 
         """

@@ -83,7 +83,7 @@ class supplier_unapplied(osv.osv):
                     and av.state = 'posted'
                     and aml.reconcile_id is null 
                     and aml.reconcile_partial_id is null
-                    and aml.account_id in (select id from account_account where type = 'payable')
+                    and aml.account_id in (select id from account_account where type = 'payable' and reconcile is True)
                     and aml.debit > 0
 
         """
