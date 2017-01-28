@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<template id="report_session">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="report.external_layout">
+						<div class="page">
+							<h2>Report Session</h2>
+							<p>
+								Name:
+								<span t-field="o.name" />
+								From
+								<span t-field="o.start_date"/>
+								to
+								<span t-field="o.end_date"/>
+								<p>
+									Instructor:
+									<span t-field="o.instructor_id.name"/>
+								</p>
+								<p>
+									Percent:
+									<span t-esc="percent(o.remaining_seats)"/>
+								</p>
+								<p>
+									LETRAS:
+									<span t-esc="util.num_a_letras(o.remaining_seats).upper()"/>
+								</p>
+
+							</p>
+							<h3>Attendees:</h3>
+							<ul>
+								<t t-foreach="o.attendee_ids" t-as="attendee">
+									<li>
+										<span t-field="attendee.name"/>
+									</li>
+								</t>	
+							</ul>
+
+							<ul>
+								<t t-foreach="get_attendee(o.id)" t-as="at">
+									<li>
+										<span t-esc="at[0]"/>
+									</li>
+								</t>	
+							</ul>
+
+
+						</div>
+					</t>
+				</t>
+			</t>
+		</template>
+	</data>
+</openerp>

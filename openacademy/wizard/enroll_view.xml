@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+
+		<!--FORM SESSION-->
+
+		<record model="ir.ui.view" id="view_enroll_form">
+			<field name="name">Enroll</field>
+			<field name="model">openacademy.enroll</field>
+			<field name="arch" type="xml">
+				<form string="Enroll">
+					<sheet>
+						<group>
+							<field name="session_id" required='1'
+							    invisible="len(context.get('active_ids',[]))>1" />
+						</group>
+						<separator string="Attendees"></separator>
+						<field name="attendee_ids">
+							<tree editable="top">
+								<field name="partner_id"/>
+								<field name="name"/>
+							</tree>
+						</field>
+
+					</sheet>
+					<button type="object" name="action_enroll" string="Enroll"
+					confirm="Are you sure?"></button>
+					<button type="special" name="cancel" string="Cancel" ></button>
+				</form>
+			</field>
+		</record>
+		<record id="enroll_action" model="ir.actions.act_window">
+			<field name="res_model">openacademy.enroll</field>
+			<field name="view_type">form</field>
+			<field name="name">Enrolls</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+
+		</record>
+		<menuitem name="Wizard" parent="main_menu" id="wizard_menu"/>
+		<menuitem name="Enroll" parent="wizard_menu" id="enroll_menu"
+		action='enroll_action'/>
+		<act_window id="enroll_action_wizard"
+		name="Enroll"
+		src_model="openacademy.session"
+		res_model="openacademy.enroll"
+		view_mode="form"
+		target="new"
+		key2="client_action_multi"/>
+
+		<!--   -->
+	</data>
+</openerp>
