@@ -19,6 +19,6 @@
     'data': ["voucher_view.xml"],
     'demo_xml' : [ ],
     'update_xml' : [],
-    'installable': True,
+    'installable': False,
     'certificate': '',
 }
