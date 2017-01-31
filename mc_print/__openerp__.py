@@ -36,7 +36,7 @@
     ],
     'test': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'css': ['static/css/forms_report.css'],
 }
