@@ -8,17 +8,17 @@
 #
 
 {
-    'name' : 'Números a Letras',
+    'name' : 'Numeros a Letras',
     'version' : '1.0',
     'category': 'Custom',
-    'description': """Agrega la cantidad en letras a los cheques para su impresión""",
+    'description': """Agrega la cantidad en letras a las facturas para la impresion de las mismas""",
     'author': 'Miguel Chuga',
     'website': 'http://mcsistemas.net',
     'depends' : ['base','sale','account'],
     'init_xml' : [ ],
-    'data': ["voucher_view.xml"],
     'demo_xml' : [ ],
-    'update_xml' : [],
-    'installable': False,
+    'update_xml' : ["invoice_view.xml"],
+    'installable': True,
     'certificate': '',
 }
+#,'catalogos_view.xml'

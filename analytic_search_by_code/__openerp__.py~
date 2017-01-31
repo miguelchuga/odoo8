@@ -18,6 +18,6 @@ Search Analytic Char by Code
     "data": [
 #        'res_partner_view.xml',
     ],
-    "installable": False,
+    "installable": True,
     "active": False,
 }

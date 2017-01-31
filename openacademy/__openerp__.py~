@@ -18,24 +18,27 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 {
-    'name': 'Agrega decimales a res.currency - MC-Sistemas',
-    'version': '1.0.0',
-    'author': 'MC-Sistemas',
-    'summary': 'Agrega decimales a res.currency.rate ',
-    'description' : """
-========================
-- Agrega decimales a res.currency.rate pero hay que tener en cuenta cuando se haga -u
-========================
-    """,
-    'website': 'http://mcsistemas.net',
-    'category': 'Accounting & Finance',
-    'depends': [],
-    'data': ['res_currency_mc.xml'
+    'name': 'Open Academy',
+    'version': '0.1',
+    'website' : 'https://www.odoo.com/page/events',
+    'category': 'Training',
+    'summary': 'This module is to intent........',
+    'description': """
+Open Academy
+Training module
+""",
+    'author': 'Miguel',
+    'depends': ['base','mail','report'],
+    'data': ['openacademy_view.xml','partner_view.xml','openacademy_workflow.xml','security/groups.xml','security/ir.model.access.csv',
+             'report/session.xml','openacademy_report.xml','openacademy_dashboard.xml','wizard/enroll_view.xml',
+    ],
+    'demo': [
+        
+    ],
+    'test': [
     ],
     'installable': True,
-    'application': True,
     'auto_install': False,
 }
-
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

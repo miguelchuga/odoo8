@@ -8,17 +8,17 @@
 #
 
 {
-    'name' : 'Números a Letras',
+    'name' : 'Pagos de cliente',
     'version' : '1.0',
     'category': 'Custom',
-    'description': """Agrega la cantidad en letras a los cheques para su impresión""",
+    'description': """Agrega campos a la forma de Pagos de clientes""",
     'author': 'Miguel Chuga',
     'website': 'http://mcsistemas.net',
-    'depends' : ['base','sale','account'],
+    'depends' : ['base','account'],
     'init_xml' : [ ],
     'data': ["voucher_view.xml"],
     'demo_xml' : [ ],
     'update_xml' : [],
-    'installable': False,
+    'installable': True,
     'certificate': '',
 }

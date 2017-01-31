@@ -34,7 +34,7 @@
     'depends': [],
     'data': ['res_currency_mc.xml'
     ],
-    'installable': True,
+    'installable': False,
     'application': True,
     'auto_install': False,
 }

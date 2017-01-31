@@ -4,6 +4,8 @@
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
 #
+#    realizado por Miguel Chuga -- miguelchuga@gmail.com
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -20,22 +22,13 @@
 ##############################################################################
 
 {
-    'name': 'Agrega decimales a res.currency - MC-Sistemas',
-    'version': '1.0.0',
-    'author': 'MC-Sistemas',
-    'summary': 'Agrega decimales a res.currency.rate ',
-    'description' : """
-========================
-- Agrega decimales a res.currency.rate pero hay que tener en cuenta cuando se haga -u
-========================
-    """,
-    'website': 'http://mcsistemas.net',
-    'category': 'Accounting & Finance',
-    'depends': [],
-    'data': ['res_currency_mc.xml'
-    ],
-    'installable': True,
-    'application': True,
-    'auto_install': False,
+'name' : "Stock Negativo",
+'category' : "Test",
+'version' : "1.0",
+'depends' : ['point_of_sale'],
+'author' : "Miguel Chuga",
+'description' : """\
+Desarrollo personalizado para control del stock negativo en el puno de venta:
+- Calendario de programacion TV""",
+'data' : ["point_of_sale_view.xml"],
 }
-
