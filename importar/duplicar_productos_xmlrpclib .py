@@ -35,11 +35,11 @@ for template in ids:
        'currency_id':data[0]["currency_id"][0],
        'ean13':data[0]["ean13"],
        'standard_price':data[0]["standard_price"],
-       'categ_id':data[0]["categ_id"][0],
-#       'taxes_id':  PONER EL ID DE IMPUESTOS DE CLIENTE
-#       'supplier_taxes_id':  PONER EL ID DE IMPUESTOS DE PROVEEDOR
-#       'property_account_income':  PONER EL ID de cuenta x cobrar DE CLIENTE    
-#       'property_account_expense':  PONER EL ID de cuenta de gastos    
+#       'categ_id':data[0]["categ_id"][0],
+#       'taxes_id':67,
+#       'supplier_taxes_id':65,
+#       'property_account_income':  10860,
+#       'property_account_expense':  1867,
        'genera_codigo':data[0]["genera_codigo"],
        'codigo_generado':data[0]["codigo_generado"],
        'description':data[0]["description"],
@@ -49,6 +49,11 @@ for template in ids:
         }
 
     template_id = sock.execute(dbname, uid, pwd, 'product.template', 'create', vals_template)
+    if template_id > 0:
+         print "Valido : "+ str(template_id)
+    else:
+        print "ERROR:" + str(data[0]["id"])
+    print vals_template
 
 
 
